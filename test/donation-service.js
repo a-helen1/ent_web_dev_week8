@@ -22,7 +22,7 @@ class DonationService {
     }
   }
 
-  async creatCandidate(newCandidate) {
+  async createCandidate(newCandidate) {
     const response =await axios.post(this.baseUrl + '/api/candidates', newCandidate);
     return response.data;
   }
@@ -44,7 +44,7 @@ class DonationService {
 
   async getUsers(id) {
     try {
-      const response = await .axios.get(this.baseUrl + '/api/user/' +id);
+      const response = await axios.get(this.baseUrl + '/api/user/' +id);
       return response.data;
     } catch (e) {
       return null;
