@@ -18,4 +18,12 @@ suite('Candidate API tests', function () {
     assert(_.some([returnedCandidate], newCandidate), 'returnedCandidate must be a superset of newCandidate');
     assert.isDefined(returnedCandidate._id);
   });
+
+  test('delete a candidate', async function () {
+    let c = await donationService.createCandidate(newCandidate);
+    assert(c._id != null);
+    await donationService.deleteOneCandidate(c._id);
+    c = await donationService.getCandidate(c._id);
+    assert(c == null);
+  });
 });

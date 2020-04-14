@@ -13,7 +13,7 @@ class DonationService {
     return response.data;
   }
 
-  async getCandidates(id) {
+  async getCandidate(id) {
     try {
       const response= await axios.get(this.baseUrl + '/api/candidates/' + id);
       return response.data;
@@ -33,7 +33,7 @@ class DonationService {
   }
 
   async deleteOneCandidate(id) {
-    const response = await axios.delete(this.baseUrl + '/api/candidates' + id);
+    const response = await axios.delete(this.baseUrl + '/api/candidates/' + id);
     return response.data;
   }
 
