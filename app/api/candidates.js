@@ -47,9 +47,9 @@ const Candidates = {
 
   deleteOne: {
     auth: false,
-    handler: async function( request,h) {
-      const candidate = await Candidate.remove({_id:request.params.id });
-      if (candidate) {
+    handler: async function(request, h) {
+      const response = await Candidate.deleteOne({ _id: request.params.id });
+      if (response.deletedCount == 1) {
         return { success: true };
       }
       return Boom.notFound('id not found');
