@@ -42,7 +42,7 @@ const Users = {
   deleteAll: {
     auth:false,
     handler: async function (request, h) {
-      await User.remove({});
+      await User.deleteMany({});
       return { success: true };
     }
   },
@@ -51,7 +51,7 @@ const Users = {
     auth: false,
     handler: async function(request, h) {
       const response = await User.deleteOne({_id: request.params.id });
-      if (response.deletedCount == 1) {
+      if (user) {
         return { success: true };
       }
       return Boom.notFound('id not found');
