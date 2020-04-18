@@ -32,10 +32,15 @@
       "office": "President"
     }
   ],
-  "newCandidate":
-  {
+  "newCandidate":  {
     "firstName": "Barnie",
     "lastName": "Grumble",
     "office": "President"
+  },
+  "newUser":  {
+    "firstName": "Maggie",
+    "lastName": "Simpson",
+    "email": "maggie@simpson.com",
+    "password": "secret"
   }
 }
