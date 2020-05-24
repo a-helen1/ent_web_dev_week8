@@ -2,6 +2,7 @@
 
 const Hapi = require('@hapi/hapi');
 const dotenv = require('dotenv');
+const fs = require('fs');
 
 const result = dotenv.config();
 if (result.error) {
@@ -10,7 +11,11 @@ if (result.error) {
 }
 
 const server = Hapi.server({
-  port: process.env.PORT || 3000,
+  port: 3443, //process.env.PORT ||//,
+  tls: {
+    key: fs.readFileSync('keys/private/webserver.key'),
+    cert: fs.readFileSync('keys/webserver.crt')
+  }
 });
 
 require('./app/models/db');
