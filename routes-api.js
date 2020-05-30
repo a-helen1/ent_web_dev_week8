@@ -10,6 +10,8 @@ module.exports = [
   {method: 'DELETE', path: '/api/candidates', config: Candidates.deleteAll },
   {method: 'GET', path: '/api/candidates/{id}/donations', config: Donations.findByCandidate },
   {method: 'POST', path: '/api/candidates/{id}/donations', config: Donations.makeDonation },
+  {method: 'DELETE', path: '/api/candidate/{id}/donations', config: Donations.deleteDonation },
+
 
   {method: 'GET', path: '/api/users', config: Users.find },
   {method: 'GET', path: '/api/users/{id}', config: Users.findOne },

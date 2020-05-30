@@ -35,6 +35,17 @@ const Donations = {
       }
     },
 
+  deleteDonation: {
+    auth:false,
+    handler: async function (request, h) {
+      const response = await Donation.deleteOne({_id: request.params.id});
+      if (response.deletedCount == 1) {
+        return  {success: true};
+      }
+      return Boom.notFound('id not found')
+    }
+  },
+
   deleteAll: {
     auth: false,
     handler: async function(request, h) {

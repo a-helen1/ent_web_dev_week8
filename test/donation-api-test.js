@@ -54,4 +54,15 @@ suite('Donation API tests', function() {
     assert.equal(d2.length, 0);
   });
 
+  test(' delete a donation', async function () {
+    const returnedCandidate = await donationService.createCandidate(newCandidate);
+    await donationService.makeDonation(returnedCandidate._id, donations[0]);
+    let returnedDonations = await donationService.getDonations(returnedCandidate._id);
+    assert.equal(returnedDonations.length, 1);
+    assert(_.some([returnedDonations[0]], donations[0]), 'returned donation must be a superset of donation');
+    await donationService.deleteOneDonation(returnedDonations[0]._id);
+    returnedDonations = await donationService.getDonations(returnedDonations[0]._id)
+    assert.equal(returnedDonations.length, 0);
+  })
+
 });
