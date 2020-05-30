@@ -9,6 +9,7 @@ module.exports = [
   {method: 'DELETE', path: '/api/candidates/{id}', config: Candidates.deleteOne },
   {method: 'DELETE', path: '/api/candidates', config: Candidates.deleteAll },
   {method: 'GET', path: '/api/candidates/{id}/donations', config: Donations.findByCandidate },
+  {method: 'POST', path: '/api/candidates/{id}/donations', config: Donations.makeDonation },
 
   {method: 'GET', path: '/api/users', config: Users.find },
   {method: 'GET', path: '/api/users/{id}', config: Users.findOne },
@@ -17,5 +18,6 @@ module.exports = [
   {method: 'DELETE', path: '/api/users/{id}', config: Users.deleteOne },
 
   {method: 'GET', path: '/api/donations', config: Donations.findAll },
+  {method: 'Delete', path: '/api/donations', config: Donations.deleteAll }
 
 ]
