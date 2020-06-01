@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-exports.createToken = function(user) {
-  return jwt.sign({id:user._id, email: user.email}, 'secretpasswordnotreveledtoanyone',{
-    algorithm:' HS256',
+exports.createToken = function (user) {
+  return jwt.sign({ id: user._id, email: user.email }, 'secretpasswordnotrevealedtoanyone', {
+    algorithm: 'HS256',
     expiresIn: '1h',
   });
 };
