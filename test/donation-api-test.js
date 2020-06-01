@@ -9,6 +9,18 @@ suite('Donation API tests', function() {
 
   let donations = fixtures.donations;
   let newCandidate= fixtures.newCandidate;
+  let newUser = fixtures.newUser;
+
+  suiteSetup(async function() {
+    await donationService.deleteAllUsers();
+    const returnedUser = await donationService.createUser(newUser);
+    const response = await donationService.authenticate(newUser);
+  });
+
+  suiteTeardown(async function() {
+    await donationService.deleteAllUsers();
+    donationService.clearAuth();
+  });
 
   const donationService = new DonationService(fixtures.donationService);
 
@@ -64,5 +76,15 @@ suite('Donation API tests', function() {
     returnedDonations = await donationService.getDonations(returnedDonations[0]._id)
     assert.equal(returnedDonations.length, 0);
   })
+
+  test('create a donation and check donor', async function() {
+    const returnedCandidate = await donationService.createCandidate(newCandidate);
+    await donationService.makeDonation(returnedCandidate._id, donations[0]);
+    const returnedDonations = await donationService.getDonations(returnedCandidate._id);
+    assert.isDefined(returnedDonations[0].donor);
+
+    const users = await donationService.getUsers();
+    assert(_.some([users[0]], newUser), 'returnedUser must be a superset of newUser');
+  });
 
 });
